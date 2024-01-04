@@ -95,6 +95,23 @@ if (devEnv) app.use(errorHandler());
 // Wire up routes
 routes(app, addon);
 
+addon.on('host_settings_saved', async (clientKey, props) => {
+  const now = moment().utc();
+  //const reqs = jwt.fromMethodAndUrl('GET', '/rest/api/latest/myself');
+  const data = props
+  const tokenData = {
+    "iss": `urn:atlassian:connect:clientid:${data.oauthClientId}`,
+    "iat": now.unix(),                  
+    "exp": now.add(2, 'minutes').unix(),  
+    "sub": `urn:atlassian:connect:useraccountid:632c117e3ac41ebde769aecc`,
+    "tnt": 'https://bginternal.atlassian.net',
+    "aud": 'https://oauth-2-authorization-server.services.atlassian.com'
+  };
+
+  console.log(tokenData)
+})
+
+
 // Boot the HTTP server
 http.createServer(app).listen(port, () => {
   console.log('App server running at http://' + os.hostname() + ':' + port);
