@@ -95,8 +95,8 @@ if (devEnv) app.use(errorHandler());
 // Wire up routes
 routes(app, addon);
 
-addon.on('host_settings_saved', async (clientKey, props) => {
-  /* const now = moment().utc();
+/* addon.on('host_settings_saved', async (clientKey, props) => {
+  const now = moment().utc();
   //const reqs = jwt.fromMethodAndUrl('GET', '/rest/api/latest/myself');
   const data = props
   const tokenData = {
@@ -108,7 +108,7 @@ addon.on('host_settings_saved', async (clientKey, props) => {
     "aud": 'https://oauth-2-authorization-server.services.atlassian.com'
   };
 
-  console.log(tokenData) */
+  console.log(tokenData)
 
   const filePath = './test.txt'; // Replace with the desired filename
 
@@ -123,7 +123,7 @@ addon.on('host_settings_saved', async (clientKey, props) => {
   });
 
 })
-
+ */
 
 // Boot the HTTP server
 http.createServer(app).listen(port, () => {

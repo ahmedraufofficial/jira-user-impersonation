@@ -1,7 +1,7 @@
 {
-    "key": "my-app",
-    "name": "My app",
-    "description": "My very first app",
+    "key": "jira-user-impersonation",
+    "name": "Jira User Impersonation",
+    "description": "An app for teams bot to impersonate users",
     "baseUrl": "{{localBaseUrl}}",
     "authentication": {
         "type": "jwt"
