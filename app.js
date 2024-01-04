@@ -30,7 +30,7 @@ import { dirname } from 'path';
 
 // Routes live here; this is the C in MVC
 import routes from './routes/index.js';
-import { addServerSideRendering } from './server-side-rendering';
+import { addServerSideRendering } from './server-side-rendering.js';
 
 // Bootstrap Express and atlassian-connect-express
 const app = express();
