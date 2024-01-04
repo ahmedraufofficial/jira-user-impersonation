@@ -11,7 +11,7 @@ export default function routes(app, addon) {
         name: "Jira User App", 
         description: "This plugin acts as a user", 
         key: "jira-user-app",
-        baseUrl: "https://jira-teams-bot.herokuapp.com", 
+        baseUrl: "https://jira-teams-bot-bbce435c3495.herokuapp.com", 
         "lifecycle": {
           "installed": "/installed"
         },
