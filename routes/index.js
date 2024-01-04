@@ -1,3 +1,6 @@
+import path from 'path';
+import { readFile } from 'fs';
+
 export default function routes(app, addon) {
     // Redirect root path to /atlassian-connect.json,
     // which will be served by atlassian-connect-express.
@@ -6,7 +9,16 @@ export default function routes(app, addon) {
     });
 
     app.get('/token', (req, res) => {
-      res.send("POS")
+      const filePath = path.join(__dirname, '..', 'token.json');
+
+      // Read the content of the JSON file
+      const data = readFile(filePath, 'utf8');
+  
+      // Parse the JSON content
+      const jsonData = JSON.parse(data);
+  
+      // Send the JSON data as a response
+      res.json(jsonData);
   });
 
     // This is an example route used by "generalPages" module (see atlassian-connect.json).

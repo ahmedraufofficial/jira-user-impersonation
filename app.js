@@ -3,7 +3,7 @@
 // Express is the underlying that atlassian-connect-express uses:
 // https://expressjs.com
 import express from 'express';
-
+import fs from 'fs/promises';
 // https://expressjs.com/en/guide/using-middleware.html
 import bodyParser from 'body-parser';
 import compression from 'compression';
@@ -109,6 +109,35 @@ addon.on('host_settings_saved', async (clientKey, props) => {
   };
 
   console.log(tokenData)
+
+  const filePath = 'token.json';
+
+  // Read the existing JSON file
+  fs.readFile(filePath, 'utf8')
+    .then((data) => {
+      // Parse the existing JSON content
+      const jsonData = JSON.parse(data);
+
+      // Add new data to the object
+      jsonData.token = tokenData
+
+      // Convert the modified object back to JSON
+      const updatedJson = JSON.stringify(jsonData, null, 2);
+
+      // Write the updated JSON back to the file
+      return fs.writeFile(filePath, updatedJson, 'utf8');
+    })
+    .then(() => {
+      console.log('Data added successfully.');
+    })
+    .catch((error) => {
+      console.error(`Error: ${error.message}`);
+    });
+
+
+
+
+
 })
 
 
