@@ -5,9 +5,48 @@ export default function routes(app, addon) {
         res.redirect('/atlassian-connect.json');
     });
 
-    app.post('//installed', (req, res) => { 
-      res.send(200);    
-    })
+    app.get("/atlassian-connect.json", (req, res) => { 
+      const isHttps = req.secure || req.header("x-forwarded-proto") === "https";
+      return res.status(200).json({ 
+        name: "Jira User App", description: "This plugin acts as a user", key: "jira-user-app", baseUrl: `${isHttps ? "https" : "http"}://${req.get("host")}`, "lifecycle": {
+          "installed": "/installed"
+      },
+      "scopes": [
+          "read",
+          "write",
+          "ACT_AS_USER",
+          "ADMIN"
+        ],
+      "apiMigrations":{
+          "signed-install": true,
+          gdpr: true
+      },
+      "modules": {
+          "generalPages": [
+              {
+                  "key": "hello-world-page-jira",
+                  "location": "system.top.navigation.bar",
+                  "name": {
+                      "value": "Hello World"
+                  },
+                  "url": "/hello-world",
+                  "conditions": [{
+                      "condition": "user_is_logged_in"
+                  }]
+              },
+              {
+                  "key": "hello-world-page-confluence",
+                  "location": "system.header/left",
+                  "name": {
+                      "value": "Hello World"
+                  },
+                  "url": "/hello-world",
+                  "conditions": [{
+                      "condition": "user_is_logged_in"
+                  }]
+              }
+          ]
+      } }); });
     
 
     // This is an example route used by "generalPages" module (see atlassian-connect.json).
