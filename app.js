@@ -95,7 +95,7 @@ if (devEnv) app.use(errorHandler());
 // Wire up routes
 routes(app, addon);
 
-addon.on('host_settings_saved', async (clientKey, props) => {
+/* addon.on('host_settings_saved', async (clientKey, props) => {
   const now = moment().utc();
   //const reqs = jwt.fromMethodAndUrl('GET', '/rest/api/latest/myself');
   const data = props
@@ -110,19 +110,7 @@ addon.on('host_settings_saved', async (clientKey, props) => {
 
   console.log(tokenData)
 
-  const filePath = './test.txt'; // Replace with the desired filename
-
-  const fileContent = 'Hello, this is the content of the file.';
-
-  fs.writeFile(filePath, fileContent, (err) => {
-      if (err) {
-          console.error(`Error creating file: ${err.message}`);
-      } else {
-          console.log('File created successfully.');
-      }
-  });
-
-})
+}) */
 
 
 // Boot the HTTP server
