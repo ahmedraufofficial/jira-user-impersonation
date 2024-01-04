@@ -6,12 +6,12 @@ export default function routes(app, addon) {
     });
 
     app.get("/atlassian-connect.json", (req, res) => { 
-      const isHttps = req.secure || req.header("x-forwarded-proto") === "https";
+      //const isHttps = req.secure || req.header("x-forwarded-proto") === "https";
       return res.status(200).json({ 
         name: "Jira User App", 
         description: "This plugin acts as a user", 
         key: "jira-user-app",
-        baseUrl: `${isHttps ? "https" : "http"}://${req.get("host")}`, 
+        baseUrl: "https://jira-teams-bot.herokuapp.com", 
         "lifecycle": {
           "installed": "/installed"
         },
