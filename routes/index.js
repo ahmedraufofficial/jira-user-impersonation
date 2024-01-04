@@ -11,6 +11,9 @@ export default function routes(app, addon) {
         name: "Jira User App", description: "This plugin acts as a user", key: "jira-user-app", baseUrl: `${isHttps ? "https" : "http"}://${req.get("host")}`, "lifecycle": {
           "installed": "/installed"
       },
+      "authentication": {
+        "type": "jwt"
+    },
       "scopes": [
           "read",
           "write",
