@@ -66,7 +66,12 @@
             // Here, we use PostgreSQL:
             "type": "postgres",
             // PaaS like Heroku will provide DB connection URL through environment variable.
-            "url": "$DATABASE_URL"
+            "url": "$DATABASE_URL",
+            "dialectOptions": {
+                "ssl": {
+                    "rejectUnauthorized": false
+                }
+            }
         },
         // The app can only be registered by the products on these domains:
         "whitelist": [
