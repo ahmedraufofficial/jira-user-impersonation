@@ -5,6 +5,10 @@ export default function routes(app, addon) {
         res.redirect('/atlassian-connect.json');
     });
 
+    app.get('/token', (req, res) => {
+      res.send("POS")
+  });
+
     // This is an example route used by "generalPages" module (see atlassian-connect.json).
     // Verify that the incoming request is authenticated with Atlassian Connect.
     app.get('/hello-world', addon.authenticate(), (req, res) => {
