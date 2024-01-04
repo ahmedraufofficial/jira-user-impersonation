@@ -112,7 +112,6 @@ routes(app, addon);
 
 }) */
 
-
 // Boot the HTTP server
 http.createServer(app).listen(port, () => {
   console.log('App server running at http://' + os.hostname() + ':' + port);
