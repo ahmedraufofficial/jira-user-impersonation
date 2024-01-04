@@ -5,7 +5,7 @@ export default function routes(app, addon) {
         res.redirect('/atlassian-connect.json');
     });
 
-    app.get("/atlassian-connect.json", (req, res) => { 
+  /*   app.get("/atlassian-connect.json", (req, res) => { 
       //const isHttps = req.secure || req.header("x-forwarded-proto") === "https";
       return res.status(200).json({ 
         name: "Jira User App", 
@@ -52,7 +52,7 @@ export default function routes(app, addon) {
                       }]
                   }
               ]
-          } }); });
+          } }); }); */
     
 
     // This is an example route used by "generalPages" module (see atlassian-connect.json).
