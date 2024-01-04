@@ -110,33 +110,17 @@ addon.on('host_settings_saved', async (clientKey, props) => {
 
   console.log(tokenData)
 
-  const filePath = 'token.json';
+  const filePath = './test.txt'; // Replace with the desired filename
 
-  // Read the existing JSON file
-  fs.readFile(filePath, 'utf8')
-    .then((data) => {
-      // Parse the existing JSON content
-      const jsonData = JSON.parse(data);
+  const fileContent = 'Hello, this is the content of the file.';
 
-      // Add new data to the object
-      jsonData.token = tokenData
-
-      // Convert the modified object back to JSON
-      const updatedJson = JSON.stringify(jsonData, null, 2);
-
-      // Write the updated JSON back to the file
-      return fs.writeFile(filePath, updatedJson, 'utf8');
-    })
-    .then(() => {
-      console.log('Data added successfully.');
-    })
-    .catch((error) => {
-      console.error(`Error: ${error.message}`);
-    });
-
-
-
-
+  fs.writeFile(filePath, fileContent, (err) => {
+      if (err) {
+          console.error(`Error creating file: ${err.message}`);
+      } else {
+          console.log('File created successfully.');
+      }
+  });
 
 })
 
