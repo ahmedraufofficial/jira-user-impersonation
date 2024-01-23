@@ -96,7 +96,7 @@ if (devEnv) app.use(errorHandler());
 routes(app, addon);
 
 
-//if running locally we can also create token here itself
+// If running locally we can also create token here itself
 
 /* addon.on('host_settings_saved', async (clientKey, props) => {
   const now = moment().utc();
@@ -106,7 +106,7 @@ routes(app, addon);
     "iss": `urn:atlassian:connect:clientid:${data.oauthClientId}`,
     "iat": now.unix(),                  
     "exp": now.add(2, 'minutes').unix(),  
-    "sub": `urn:atlassian:connect:useraccountid:userIdonJira`,
+    "sub": `urn:atlassian:connect:useraccountid:userIdToImpersonateOnJira`,
     "tnt": 'https://jiraTenant.atlassian.net',
     "aud": 'https://oauth-2-authorization-server.services.atlassian.com'
   };
@@ -126,6 +126,36 @@ routes(app, addon);
 
 })
  */
+
+// Once token is created in step 1, create a Jira user Token
+
+/*
+const postToken = (userToken) => {
+    const options = {
+        'method': 'POST',
+        'url': 'https://oauth-2-authorization-server.services.atlassian.com/oauth2/token',
+        'headers': {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+            'scope': 'READ WRITE',
+            'assertion': userToken
+        }
+    };
+
+    return new Promise((resolve, reject) => {
+        request(options, function (error, res, body) {
+            if (!error && res.statusCode === 200) {
+                resolve(body);
+            } else {
+                reject(error);
+            }
+        });
+    })
+}
+*/
 
 // Boot the HTTP server
 http.createServer(app).listen(port, () => {
