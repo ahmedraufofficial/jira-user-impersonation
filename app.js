@@ -95,6 +95,9 @@ if (devEnv) app.use(errorHandler());
 // Wire up routes
 routes(app, addon);
 
+
+//if running locally we can also create token here itself
+
 /* addon.on('host_settings_saved', async (clientKey, props) => {
   const now = moment().utc();
   //const reqs = jwt.fromMethodAndUrl('GET', '/rest/api/latest/myself');
@@ -103,24 +106,23 @@ routes(app, addon);
     "iss": `urn:atlassian:connect:clientid:${data.oauthClientId}`,
     "iat": now.unix(),                  
     "exp": now.add(2, 'minutes').unix(),  
-    "sub": `urn:atlassian:connect:useraccountid:632c117e3ac41ebde769aecc`,
-    "tnt": 'https://bginternal.atlassian.net',
+    "sub": `urn:atlassian:connect:useraccountid:userIdonJira`,
+    "tnt": 'https://jiraTenant.atlassian.net',
     "aud": 'https://oauth-2-authorization-server.services.atlassian.com'
   };
 
-  console.log(tokenData)
+  const secret = data.sharedSecret;
 
-  const filePath = './test.txt'; // Replace with the desired filename
-
-  const fileContent = 'Hello, this is the content of the file.';
-
-  fs.writeFile(filePath, fileContent, (err) => {
-      if (err) {
-          console.error(`Error creating file: ${err.message}`);
-      } else {
-          console.log('File created successfully.');
-      }
-  });
+  const getToken = (tokenData, secret) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const token = jwt.encodeSymmetric(tokenData, secret);
+            resolve(token);
+        } catch (error) {
+            reject(error);
+        }
+    });
+  };
 
 })
  */

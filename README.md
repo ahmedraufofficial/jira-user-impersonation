@@ -1,8 +1,7 @@
-# Atlassian Connect App using Express
+# Atlassian Connect App for user impersonation
 
-Congratulations!
-You've successfully created an Atlassian Connect App using the Express web application framework.
+An Atlassian Connect App to impersonate users on a Jira Cloud Tenant.
 
 ## What's next?
 
-[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md).
+# Create token
